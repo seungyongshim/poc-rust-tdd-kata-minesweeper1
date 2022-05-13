@@ -1,15 +1,15 @@
 pub enum Cell {
     Covered(Box<Cell>),
     Bomb,
-    Number(i8)
+    Number(u8)
 }
 
 impl Cell {
-    pub fn to_string(&self) -> String {
+    pub fn to_char(&self) -> char {
         match self {
-            Cell::Covered(_) => String::from("."),
-            Cell::Bomb => String::from("*"),
-            Cell::Number(x) => format!("{}", x),
+            Cell::Covered(_) => '.',
+            Cell::Bomb => '*',
+            Cell::Number(x) => char::from_digit(*x as u32, 10).unwrap()
         }
     }
     pub fn click(self) -> Cell {
