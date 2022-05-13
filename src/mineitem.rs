@@ -1,16 +1,13 @@
 pub enum Cell {
-    Covered {inner: Box<Cell>},
+    Covered(Box<Cell>),
     Bomb,
-    Number {value: i8}
+    Number(i8)
 }
 
 pub fn view(v : Cell) -> String {
     match v {
-        Bomb => String::from("*"),
-        Number {v} => v
+        Cell::Bomb => String::from("*"),
+        Cell::Number(x) => format!("{}", x),
+        Cell::Covered(_) => String::from("."),
     }
-}
-
-pub fn hello() -> i8 {
-    1
 }
