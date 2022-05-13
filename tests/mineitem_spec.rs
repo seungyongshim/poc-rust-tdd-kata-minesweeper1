@@ -16,8 +16,14 @@ fn should_numver() {
 
 #[test]
 fn should_cover() {
-    let sut = Cover::Covered(Cell::Bomb);
+    let sut = Cell::Covered(Box::new(Cell::Bomb));
     let ret = sut.to_string();
     assert_eq!(".", ret);
+}
 
+#[test]
+fn should_click() {
+    let sut = Cell::Covered(Box::new(Cell::Bomb));
+    let ret = sut.click().to_string();
+    assert_eq!(".", ret);
 }
