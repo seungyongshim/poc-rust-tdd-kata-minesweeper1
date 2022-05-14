@@ -1,4 +1,4 @@
-use std::{collections::{hash_map, HashMap}, ops::Generator, iter::FlatMap};
+use std::collections::{hash_map, HashMap};
 
 use super::mineitem::{*};
 struct Minefield {
@@ -8,11 +8,18 @@ struct Minefield {
 }
 
 fn build_minefield (width: i8, height:i8 ) -> Minefield {
-    let ret = Minefield { 
+    let mut ret = Minefield { 
         width,
         height,
         cells : HashMap::new()
     };
 
-    [0..width].m
+    for a in 0..height {
+        for b in 0..width {
+            ret.cells.insert((a, b), Cell::Covered(Box::new(Cell::Number(0))));
+        };
+    };
+
+    return ret;
+                    
 }
